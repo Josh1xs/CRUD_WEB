@@ -71,10 +71,10 @@ document.getElementById("frmAgregar").addEventListener("submit, ",async e => {
     }
 
     //Llamar a la API para enviar los datos
-    const respuesta = await fetch(API_URL, {
+    const respuesta = await fetch(`${API_URL}/${id}`, {
         method: "POST", 
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({nombre,apellido,correo})
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify({correo,nombre,apellido})
     });
 
 
@@ -126,7 +126,7 @@ btnCerrarEditar.addEventListener("click", ()=>{
 
 function AbrirModalEditar(id,nombre,apellido,correo){
     //Agregamos los valores a los input antes de abrir el modal
-    document.getElementById("txtdEditar").value = id;
+    document.getElementById("txtIdEditar").value = id;
     document.getElementById("txtNombreEditar").value = nombre;
     document.getElementById("txtApellidoEditar").value = apellido;
     document.getElementById("txtCorreoEditar").value = correo;
@@ -134,3 +134,34 @@ function AbrirModalEditar(id,nombre,apellido,correo){
     //Modal se abre depues de agregar los valores a los input
     modalEditar.showModal();
 }
+
+document.getElementById("frmEditar").addEventListener("submit",async e =>{
+    e.preventDefault(); //Evita que el formulario se envie de golpe
+    //Capturamos los valores nuevos del formulario
+    const id = document.getElementById("txtIdEditar").value;
+    const nombre = document.getElementById("txtNombreEditar").value.trim();
+    const apellido = document.getElementById("txtApellidoEditar").value.trim();
+    const correo = document.getElementById("txtCorreoEditar").value.trim();
+
+
+    //Validacion de los campos
+    if(!id || !nombre || !apellido || !correo){
+     alert("Complete todos los campos");
+     return; //Evita que el codigo se siga ejecutando
+}
+
+    //Llamada a la API
+    const respuesta = await fetch(`${API_URL}/${id}`, {
+        method: "PUT", 
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({correo, nombre, apellido})
+    });
+    if(respuesta.ok){
+        alert("Registro actualizado con exito");  //Confirmacion 
+        modalEditar.close(); //Cerramos el modal
+        ObtenerRegistros();
+    }
+    else{
+        alert("Hubo un error al actualizar")
+    }
+});
