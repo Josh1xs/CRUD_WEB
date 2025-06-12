@@ -57,7 +57,7 @@ btnCerrar.addEventListener("click",()=>{
 });
 
 //Agregar un nuevo integrante desde el formulario
-document.getElementById("frmAgregar").addEventListener("submit, ",async e => {
+document.getElementById("frmAgregar").addEventListener("submit",async e => {
     e.preventDefault(); //Evita  que los datos se envien por defecto
     //Capturar los valores del formulario
     const nombre = document.getElementById("txtNombre").value.trim();
@@ -71,7 +71,7 @@ document.getElementById("frmAgregar").addEventListener("submit, ",async e => {
     }
 
     //Llamar a la API para enviar los datos
-    const respuesta = await fetch(`${API_URL}/${id}`, {
+    const respuesta = await fetch(API_URL, {
         method: "POST", 
         headers: {"Content-Type" : "application/json"},
         body: JSON.stringify({correo,nombre,apellido})
