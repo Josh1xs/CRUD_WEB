@@ -39,7 +39,7 @@
                 </thead>
                 <tbody>
                     <!--Aqui van los registros que vienen en el JSON-->
-                    
+                
                 </tbody>
             </table>
         </div>
@@ -61,6 +61,23 @@
     </dialog>
     </main>
 
+    <!--Popup para actualizar-->
+    <dialog id = "mdEditar">
+        <article>
+            <header>
+                <a href="#" class="close" id="btnCerrarEditar"></a>
+                <h3>Modificar Integrante</h3>
+          </header>
+          <form id="frmEditar">
+            <input type="hidden" id="txtIdEditar"> <!--Guarda el ID de manera-->
+                <input type="text" id="txtNombreEditar" placeholder="Nombre" required>
+                <input type="text" id="txtApellidoEditar"placeholder="Apellido" required>
+                <input type="text" id="txtCorreoEditar"placeholder="Correo" required>
+                <button type="submit" class="contrast">Guardar Registro</button>
+          </form>
+        </article>
+    </dialog>
+    </main>
 
     <button class="add-button" id="btnAgregar"  title="Agregar Integrante">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-plus-icon lucide-user-round-plus"><path d="M2 21a8 8 0 0 1 13.292-6"/><circle cx="10" cy="8" r="5"/><path d="M19 16v6"/><path d="M22 19h-6"/></svg>

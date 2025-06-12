@@ -32,7 +32,7 @@ function MostrarRegistros(datos){
                 <td>${persona.apellido}</td>
                 <td>${persona.correo}</td>
                 <td>
-                    <button>Editar</button>
+                    <button onclick="AbrirModalEditar('${persona.id}','${persona.nombre}', '${persona.apellido}','${persona.correo}')">Editar</button>
                     <button onclick="EliminarRegistro(${persona.id})">Eliminar</button>
                 </td>
             </tr>
@@ -112,4 +112,25 @@ document.getElementById("frmAgregar").addEventListener("submit, ",async e => {
        //Recargar la tabla para actualizar la vista 
        ObtenerRegistros();
     }
+}
+
+/*Funcionalidad para editar registros*/
+const modalEditar = document.getElementById("mdEditar");
+const btnCerrarEditar = document.getElementById("btnCerrarEditar");
+
+//Funcionalidad para cerrar
+
+btnCerrarEditar.addEventListener("click", ()=>{
+    modalEditar.close(); //Cerrar el Modal de Editar  
+});
+
+function AbrirModalEditar(id,nombre,apellido,correo){
+    //Agregamos los valores a los input antes de abrir el modal
+    document.getElementById("txtdEditar").value = id;
+    document.getElementById("txtNombreEditar").value = nombre;
+    document.getElementById("txtApellidoEditar").value = apellido;
+    document.getElementById("txtCorreoEditar").value = correo;
+
+    //Modal se abre depues de agregar los valores a los input
+    modalEditar.showModal();
 }
